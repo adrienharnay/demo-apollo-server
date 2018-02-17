@@ -1,0 +1,22 @@
+{
+  "name": "demo-apollo-server",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "repository": "https://github.com/Zephir77167/demo-apollo-server.git",
+  "author": "Adrien HARNAY <adrien@harnay.me>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "apollo-server": "^0.3.3",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "graphql": "^0.13.1",
+    "graphql-tools": "^2.21.0",
+    "mongoose": "^5.0.6",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}

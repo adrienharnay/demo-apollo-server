@@ -7,17 +7,33 @@ const mongoose = require('mongoose');
 const seed = require('./seed');
 
 const PORT = 3000;
+const USE_DISTANT_DB =
+  process.env.NODE_ENV === 'production' ||
+  process.env.USE_DISTANT_DB === 'true';
 const app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/apollo', (err, data) => {
-  if (err) {
-    return err;
-  }
-  mongoose.connection.db.dropDatabase();
-  seed();
-  return true;
-});
+
+if (!USE_DISTANT_DB) {
+  mongoose.connect('mongodb://localhost/demo-apollo-server', (err, data) => {
+    if (err) {
+      return err;
+    }
+    mongoose.connection.db.dropDatabase();
+    seed();
+    return true;
+  });
+} else {
+  mongoose.connect(
+    'mongodb://demo-apollo-server:apollo@ds237868.mlab.com:37868/demo-apollo-server',
+    (err, data) => {
+      if (err) {
+        return err;
+      }
+      return true;
+    },
+  );
+}
 
 const Schema = require('./schema');
 const Resolvers = require('./resolvers');

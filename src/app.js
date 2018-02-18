@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const seed = require('./seed');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const USE_DISTANT_DB =
   process.env.NODE_ENV === 'production' ||
   process.env.USE_DISTANT_DB === 'true';

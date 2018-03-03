@@ -1,4 +1,4 @@
-const { apolloExpress, graphiqlExpress } = require('apollo-server');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 const express = require('express');
 const { makeExecutableSchema } = require('graphql-tools');
@@ -47,7 +47,7 @@ const executableSchema = makeExecutableSchema({
 app.use(
   '/graphql',
   bodyParser.json(),
-  apolloExpress({
+  graphqlExpress({
     schema: executableSchema,
     context: {
       constructor: Connectors,

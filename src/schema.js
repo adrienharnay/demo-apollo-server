@@ -25,7 +25,8 @@ type Cocktail {
 The list of all queries available.
 """
 type RootQuery {
-  cocktails(name: String, ingredient: String): [Cocktail]!
+  cocktails(ingredient: String): [Cocktail]!
+  cocktail(id: ID!): Cocktail
 }
 
 schema {

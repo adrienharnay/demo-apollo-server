@@ -1,9 +1,14 @@
 const resolveFunctions = {
   RootQuery: {
-    cocktails(_, { name, ingredient }, ctx) {
+    cocktails(_, { ingredient }, ctx) {
       const cocktail = new ctx.constructor.Cocktail();
 
-      return cocktail.findCocktails(name, ingredient);
+      return cocktail.findCocktails(ingredient);
+    },
+    cocktail(_, { id }, ctx) {
+      const cocktail = new ctx.constructor.Cocktail();
+
+      return cocktail.findCocktail(id);
     },
   },
 };

@@ -8,11 +8,16 @@ class Cocktail {
       if (!name && !ingredient) {
         where = {};
       } else if (name && ingredient) {
-        where = { name, ingredients: { $elemMatch: { name: ingredient } } };
+        where = {
+          name,
+          ingredients: { $elemMatch: { name: new RegExp(ingredient) } },
+        };
       } else if (!ingredient) {
         where = { name };
       } else if (!name) {
-        where = { ingredients: { $elemMatch: { name: ingredient } } };
+        where = {
+          ingredients: { $elemMatch: { name: new RegExp(ingredient) } },
+        };
       }
 
       return await CocktailModel.find(where);

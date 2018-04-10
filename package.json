@@ -2,7 +2,7 @@
   "name": "demo-apollo-server",
   "version": "1.0.0",
   "main": "src/app.js",
-  "repository": "https://github.com/Zephir77167/demo-apollo-server.git",
+  "repository": "https://github.com/adrienharnay/demo-apollo-server.git",
   "author": "Adrien HARNAY <adrien@harnay.me>",
   "license": "MIT",
   "private": false,

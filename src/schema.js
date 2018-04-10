@@ -1,6 +1,6 @@
 const typeDefinitions = `
 """
-Combined with other ingredients, the key element to a nice cocktail.
+Combined to other ingredients, the key element to a nice cocktail.
 """
 type Ingredient {
   id: ID!

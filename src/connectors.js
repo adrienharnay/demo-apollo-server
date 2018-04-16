@@ -5,7 +5,7 @@ class Cocktail {
     this.findCocktails = async ingredient => {
       const where = ingredient
         ? {
-            ingredients: { $elemMatch: { name: new RegExp(ingredient) } },
+            ingredients: { $elemMatch: { name: new RegExp(ingredient, 'i') } },
           }
         : {};
 

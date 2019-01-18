@@ -1,37 +1,39 @@
-const typeDefinitions = `
-"""
-Combined to other ingredients, the key element to a nice cocktail.
-"""
-type Ingredient {
-  id: ID!
-  name: String!
-  quantity: String
-}
+const { gql } = require('apollo-server');
 
-"""
-An alcoholic (or non-alcoholic) drink consisting of a spirit or spirits mixed with other ingredients, such as fruit juice or cream.
-"""
-type Cocktail {
-  id: ID!
-  name: String!
-  imageURL: String!
-  likes: Int!
-  glassType: String!
-  instructions: String!
-  ingredients: [Ingredient]!,
-}
+const typeDefinitions = gql`
+  """
+  Combined to other ingredients, the key element to a nice cocktail.
+  """
+  type Ingredient {
+    id: ID!
+    name: String!
+    quantity: String
+  }
 
-"""
-The list of all queries available.
-"""
-type RootQuery {
-  cocktails(ingredient: String): [Cocktail]!
-  cocktail(id: ID!): Cocktail
-}
+  """
+  An alcoholic (or non-alcoholic) drink consisting of a spirit or spirits mixed with other ingredients, such as fruit juice or cream.
+  """
+  type Cocktail {
+    id: ID!
+    name: String!
+    imageURL: String!
+    likes: Int!
+    glassType: String!
+    instructions: String!
+    ingredients: [Ingredient]!
+  }
 
-schema {
-  query: RootQuery
-}
+  """
+  The list of all queries available.
+  """
+  type RootQuery {
+    cocktails(ingredient: String): [Cocktail]!
+    cocktail(id: ID!): Cocktail
+  }
+
+  schema {
+    query: RootQuery
+  }
 `;
 
 module.exports = [typeDefinitions];

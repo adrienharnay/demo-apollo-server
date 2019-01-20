@@ -12,14 +12,14 @@ const Cocktail = mongoose.model('Cocktail', CocktailSchema);
 
 const CocktailLikeSchema = mongoose.Schema({
   userId: String,
-  cocktailId: String,
+  cocktailId: mongoose.Types.ObjectId,
 });
 
 const CocktailLike = mongoose.model('CocktailLike', CocktailLikeSchema);
 
 const CocktailBookmarkSchema = mongoose.Schema({
   userId: String,
-  cocktailId: String,
+  cocktailId: mongoose.Types.ObjectId,
 });
 
 const CocktailBookmark = mongoose.model(

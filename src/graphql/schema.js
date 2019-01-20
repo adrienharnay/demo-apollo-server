@@ -30,6 +30,8 @@ const typeDefinitions = gql`
   """
   type Query {
     cocktails(ingredient: String): [Cocktail]!
+    likedCocktails(ingredient: String): [Cocktail]!
+    bookmarkedCocktails(ingredient: String): [Cocktail]!
     cocktail(id: ID!): Cocktail
   }
 

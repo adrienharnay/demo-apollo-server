@@ -7,11 +7,53 @@ const {
 class Cocktail {
   constructor(userId) {
     this.getCocktails = async ingredient => {
-      const where = ingredient
-        ? {
-            ingredients: { $elemMatch: { name: new RegExp(ingredient, 'i') } },
-          }
-        : {};
+      const where = {
+        ...(ingredient
+          ? {
+              ingredients: {
+                $elemMatch: { name: new RegExp(ingredient, 'i') },
+              },
+            }
+          : {}),
+      };
+
+      return await CocktailModel.find(where);
+    };
+
+    this.getLikedCocktails = async ingredient => {
+      const likedCocktailsIds = (await CocktailLikeModel.find({ userId })).map(
+        row => row.cocktailId,
+      );
+
+      const where = {
+        _id: { $in: likedCocktailsIds },
+        ...(ingredient
+          ? {
+              ingredients: {
+                $elemMatch: { name: new RegExp(ingredient, 'i') },
+              },
+            }
+          : {}),
+      };
+
+      return await CocktailModel.find(where);
+    };
+
+    this.getBookmarkedCocktails = async ingredient => {
+      const bookmarkedCocktailsIds = (await CocktailBookmarkModel.find({
+        userId,
+      })).map(row => row.cocktailId);
+
+      const where = {
+        _id: { $in: bookmarkedCocktailsIds },
+        ...(ingredient
+          ? {
+              ingredients: {
+                $elemMatch: { name: new RegExp(ingredient, 'i') },
+              },
+            }
+          : {}),
+      };
 
       return await CocktailModel.find(where);
     };

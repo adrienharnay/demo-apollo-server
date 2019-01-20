@@ -5,6 +5,16 @@ const resolveFunctions = {
 
       return cocktail.getCocktails(ingredient);
     },
+    likedCocktails(_, { ingredient }, ctx) {
+      const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
+
+      return cocktail.getLikedCocktails(ingredient);
+    },
+    bookmarkedCocktails(_, { ingredient }, ctx) {
+      const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
+
+      return cocktail.getBookmarkedCocktails(ingredient);
+    },
     cocktail(_, { id }, ctx) {
       const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
 

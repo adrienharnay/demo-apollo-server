@@ -10,18 +10,21 @@ const CocktailSchema = mongoose.Schema({
 
 const Cocktail = mongoose.model('Cocktail', CocktailSchema);
 
-const FavoriteSchema = mongoose.Schema({
+const CocktailLikeSchema = mongoose.Schema({
   userId: String,
   cocktailId: String,
 });
 
-const Favorite = mongoose.model('Favorite', FavoriteSchema);
+const CocktailLike = mongoose.model('CocktailLike', CocktailLikeSchema);
 
-const ToTrySchema = mongoose.Schema({
+const CocktailBookmarkSchema = mongoose.Schema({
   userId: String,
   cocktailId: String,
 });
 
-const ToTry = mongoose.model('ToTry', ToTrySchema);
+const CocktailBookmark = mongoose.model(
+  'CocktailBookmark',
+  CocktailBookmarkSchema,
+);
 
-module.exports = { Cocktail, Favorite, ToTry };
+module.exports = { Cocktail, CocktailLike, CocktailBookmark };

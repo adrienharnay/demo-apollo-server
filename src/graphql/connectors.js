@@ -1,12 +1,12 @@
 const {
   Cocktail: CocktailModel,
-  Favorite: FavoriteModel,
-  ToTry: ToTryModel,
+  CocktailLike: CocktailLikeModel,
+  CocktailBookmark: CocktailBookmarkModel,
 } = require('../database/models');
 
 class Cocktail {
   constructor(userId) {
-    this.findCocktails = async ingredient => {
+    this.getCocktails = async ingredient => {
       const where = ingredient
         ? {
             ingredients: { $elemMatch: { name: new RegExp(ingredient, 'i') } },
@@ -16,25 +16,25 @@ class Cocktail {
       return await CocktailModel.find(where);
     };
 
-    this.findCocktail = async id => {
+    this.getCocktail = async id => {
       return await CocktailModel.findById(id);
     };
 
-    this.toggleFavoriteCocktail = async cocktailId => {
-      const res = await FavoriteModel.deleteOne({ userId, cocktailId });
+    this.toggleLikeCocktail = async cocktailId => {
+      const res = await CocktailLikeModel.deleteOne({ userId, cocktailId });
 
       if (!res.deletedCount) {
-        await FavoriteModel.create({ userId, cocktailId });
+        await CocktailLikeModel.create({ userId, cocktailId });
       }
 
       return await CocktailModel.findById(cocktailId);
     };
 
-    this.toggleToTryCocktail = async cocktailId => {
-      const res = await ToTryModel.deleteOne({ userId, cocktailId });
+    this.toggleBookmarkCocktail = async cocktailId => {
+      const res = await CocktailBookmarkModel.deleteOne({ userId, cocktailId });
 
       if (!res.deletedCount) {
-        await ToTryModel.create({ userId, cocktailId });
+        await CocktailBookmarkModel.create({ userId, cocktailId });
       }
 
       return await CocktailModel.findById(cocktailId);
@@ -42,20 +42,24 @@ class Cocktail {
   }
 }
 
-class Favorite {
+class CocktailLike {
   constructor(userId) {
-    this.findNumberOfLikesForCocktail = async cocktailId => {
-      return await FavoriteModel.countDocuments({ cocktailId });
+    this.getCocktailLikes = async cocktailId => {
+      return await CocktailLikeModel.countDocuments({ cocktailId });
+    };
+
+    this.isCocktailLiked = async cocktailId => {
+      return !!(await CocktailLikeModel.findOne({ userId, cocktailId }));
     };
   }
 }
 
-class ToTry {
+class CocktailBookmark {
   constructor(userId) {
-    this.findToTryForCocktail = async cocktailId => {
-      return !!(await ToTryModel.findOne({ userId, cocktailId }));
+    this.isCocktailBookmarked = async cocktailId => {
+      return !!(await CocktailBookmarkModel.findOne({ userId, cocktailId }));
     };
   }
 }
 
-module.exports = { Cocktail, Favorite, ToTry };
+module.exports = { Cocktail, CocktailLike, CocktailBookmark };

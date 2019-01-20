@@ -3,36 +3,43 @@ const resolveFunctions = {
     cocktails(_, { ingredient }, ctx) {
       const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
 
-      return cocktail.findCocktails(ingredient);
+      return cocktail.getCocktails(ingredient);
     },
     cocktail(_, { id }, ctx) {
       const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
 
-      return cocktail.findCocktail(id);
+      return cocktail.getCocktail(id);
     },
   },
   Cocktail: {
     likes(cocktail, _, ctx) {
-      const favorite = new ctx.constructor.Favorite(ctx.deviceId);
+      const cocktailLike = new ctx.constructor.CocktailLike(ctx.deviceId);
 
-      return favorite.findNumberOfLikesForCocktail(cocktail._id);
+      return cocktailLike.getCocktailLikes(cocktail._id);
     },
-    toTry(cocktail, _, ctx) {
-      const wannaTry = new ctx.constructor.ToTry(ctx.deviceId);
+    liked(cocktail, _, ctx) {
+      const cocktailLike = new ctx.constructor.CocktailLike(ctx.deviceId);
 
-      return wannaTry.findToTryForCocktail(cocktail._id);
+      return cocktailLike.isCocktailLiked(cocktail._id);
+    },
+    bookmarked(cocktail, _, ctx) {
+      const cocktailBookmark = new ctx.constructor.CocktailBookmark(
+        ctx.deviceId,
+      );
+
+      return cocktailBookmark.isCocktailBookmarked(cocktail._id);
     },
   },
   Mutation: {
-    toggleFavoriteCocktail(_, { id }, ctx) {
+    toggleLikeCocktail(_, { id }, ctx) {
       const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
 
-      return cocktail.toggleFavoriteCocktail(id);
+      return cocktail.toggleLikeCocktail(id);
     },
-    toggleToTryCocktail(_, { id }, ctx) {
+    toggleBookmarkCocktail(_, { id }, ctx) {
       const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
 
-      return cocktail.toggleToTryCocktail(id);
+      return cocktail.toggleBookmarkCocktail(id);
     },
   },
 };

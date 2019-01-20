@@ -1,7 +1,10 @@
-const { Cocktail: CocktailModel } = require('../database/models');
+const {
+  Cocktail: CocktailModel,
+  Favorite: FavoriteModel,
+} = require('../database/models');
 
 class Cocktail {
-  constructor() {
+  constructor(userId) {
     this.findCocktails = async ingredient => {
       const where = ingredient
         ? {
@@ -16,12 +19,14 @@ class Cocktail {
       return await CocktailModel.findById(id);
     };
 
-    this.favoriteCocktail = async id => {
-      return await CocktailModel.findByIdAndUpdate(
-        id,
-        { $inc: { likes: 1 } },
-        { new: true },
-      );
+    this.favoriteCocktail = async cocktailId => {
+      const res = await FavoriteModel.deleteOne({ userId, cocktailId });
+
+      if (!res.deletedCount) {
+        await FavoriteModel.create({ userId, cocktailId });
+      }
+
+      return await CocktailModel.findById(cocktailId);
     };
   }
 }

@@ -39,7 +39,6 @@ const seed = async () => {
       .map(drink => ({
         name: drink.strDrink ? drink.strDrink.trim() : '',
         imageURL: drink.strDrinkThumb,
-        likes: Math.floor(Math.random() * 100),
         glassType: drink.strGlass ? drink.strGlass.trim() : '',
         instructions: drink.strInstructions ? drink.strInstructions.trim() : '',
         ingredients: new Array(15)

@@ -1,9 +1,10 @@
 const fs = require('fs');
-const request = require('request-promise');
+const path = require('path');
+// const request = require('request-promise');
 
-const Cocktail = require('./model');
+const Cocktail = require('../graphql/model');
 
-const BACKUP_FILE = './backup.json';
+const BACKUP_FILE = path.resolve(__dirname, './backup.json');
 
 const seed = async () => {
   try {

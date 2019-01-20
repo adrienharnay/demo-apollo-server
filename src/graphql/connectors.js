@@ -9,16 +9,15 @@ const {
 class Cocktail {
   constructor(userId) {
     this.getCocktails = async ingredient => {
-      const nameRegexp = new RegExp(
-        escapeStringRegexp(ingredient).replace(/\s*,\s*/g, '|'),
-        'i',
-      );
       const where = {
         ...(ingredient
           ? {
               ingredients: {
                 $elemMatch: {
-                  name: nameRegexp,
+                  name: new RegExp(
+                    escapeStringRegexp(ingredient).replace(/\s*,\s*/g, '|'),
+                    'i',
+                  ),
                 },
               },
             }
@@ -33,17 +32,16 @@ class Cocktail {
         row => row.cocktailId,
       );
 
-      const nameRegexp = new RegExp(
-        escapeStringRegexp(ingredient).replace(/\s*,\s*/g, '|'),
-        'i',
-      );
       const where = {
         _id: { $in: likedCocktailsIds },
         ...(ingredient
           ? {
               ingredients: {
                 $elemMatch: {
-                  name: nameRegexp,
+                  name: new RegExp(
+                    escapeStringRegexp(ingredient).replace(/\s*,\s*/g, '|'),
+                    'i',
+                  ),
                 },
               },
             }
@@ -58,17 +56,16 @@ class Cocktail {
         userId,
       })).map(row => row.cocktailId);
 
-      const nameRegexp = new RegExp(
-        escapeStringRegexp(ingredient).replace(/\s*,\s*/g, '|'),
-        'i',
-      );
       const where = {
         _id: { $in: bookmarkedCocktailsIds },
         ...(ingredient
           ? {
               ingredients: {
                 $elemMatch: {
-                  name: nameRegexp,
+                  name: new RegExp(
+                    escapeStringRegexp(ingredient).replace(/\s*,\s*/g, '|'),
+                    'i',
+                  ),
                 },
               },
             }

@@ -17,4 +17,11 @@ const FavoriteSchema = mongoose.Schema({
 
 const Favorite = mongoose.model('Favorite', FavoriteSchema);
 
-module.exports = { Cocktail, Favorite };
+const ToTrySchema = mongoose.Schema({
+  userId: String,
+  cocktailId: String,
+});
+
+const ToTry = mongoose.model('ToTry', ToTrySchema);
+
+module.exports = { Cocktail, Favorite, ToTry };

@@ -18,6 +18,7 @@ const typeDefinitions = gql`
     name: String!
     imageURL: String!
     likes: Int!
+    toTry: Boolean!
     glassType: String!
     instructions: String!
     ingredients: [Ingredient]!
@@ -35,7 +36,8 @@ const typeDefinitions = gql`
   The list of all queries available.
   """
   type Mutation {
-    favoriteCocktail(id: ID!): Cocktail
+    toggleFavoriteCocktail(id: ID!): Cocktail
+    toggleToTryCocktail(id: ID!): Cocktail
   }
 
   schema {

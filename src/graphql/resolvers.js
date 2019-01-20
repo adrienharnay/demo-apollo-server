@@ -17,12 +17,22 @@ const resolveFunctions = {
 
       return favorite.findNumberOfLikesForCocktail(cocktail._id);
     },
+    toTry(cocktail, _, ctx) {
+      const wannaTry = new ctx.constructor.ToTry(ctx.deviceId);
+
+      return wannaTry.findToTryForCocktail(cocktail._id);
+    },
   },
   Mutation: {
-    favoriteCocktail(_, { id }, ctx, lol) {
+    toggleFavoriteCocktail(_, { id }, ctx) {
       const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
 
-      return cocktail.favoriteCocktail(id);
+      return cocktail.toggleFavoriteCocktail(id);
+    },
+    toggleToTryCocktail(_, { id }, ctx) {
+      const cocktail = new ctx.constructor.Cocktail(ctx.deviceId);
+
+      return cocktail.toggleToTryCocktail(id);
     },
   },
 };

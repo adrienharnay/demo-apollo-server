@@ -3,6 +3,14 @@ const {
   Favorite: FavoriteModel,
 } = require('../database/models');
 
+class Favorite {
+  constructor(userId) {
+    this.findNumberOfLikesForCocktail = async cocktailId => {
+      return await FavoriteModel.countDocuments({ cocktailId });
+    };
+  }
+}
+
 class Cocktail {
   constructor(userId) {
     this.findCocktails = async ingredient => {
@@ -31,4 +39,4 @@ class Cocktail {
   }
 }
 
-module.exports = { Cocktail };
+module.exports = { Cocktail, Favorite };

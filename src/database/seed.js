@@ -63,7 +63,7 @@ const seed = async () => {
       cocktail.save();
     });
   } catch (err) {
-    console.log('Error while seeding database:', err);
+    console.error('Error while seeding database:', err);
   }
 };
 

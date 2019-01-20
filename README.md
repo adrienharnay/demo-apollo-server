@@ -10,7 +10,7 @@ This demo app creates a MongoDB collection and exposes it via a GraphQL endpoint
 
 ```bash
 yarn
-USE_DISTANT_DB=true yarn start
+USE_DISTANT_DB=true DB_USER=demo-apollo-server DB_PASSWORD=apollo yarn start
 open http://localhost:3000/graphiql
 ```
 

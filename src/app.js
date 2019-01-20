@@ -8,6 +8,9 @@ const USE_DISTANT_DB =
   process.env.NODE_ENV === 'production' ||
   process.env.USE_DISTANT_DB === 'true';
 
+const DB_USER = process.env.DB_USER;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+
 mongoose.Promise = global.Promise;
 
 if (!USE_DISTANT_DB) {
@@ -24,7 +27,7 @@ if (!USE_DISTANT_DB) {
   );
 } else {
   mongoose.connect(
-    'mongodb://demo-apollo-server:apollo@ds237868.mlab.com:37868/demo-apollo-server',
+    `mongodb://${DB_USER}:${DB_PASSWORD}@ds237868.mlab.com:37868/demo-apollo-server`,
     err => {
       if (err) {
         return err;

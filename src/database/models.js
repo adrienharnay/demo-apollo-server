@@ -11,4 +11,4 @@ const CocktailSchema = mongoose.Schema({
 
 const Cocktail = mongoose.model('Cocktail', CocktailSchema);
 
-module.exports = Cocktail;
+module.exports = { Cocktail };

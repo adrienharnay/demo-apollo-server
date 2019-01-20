@@ -11,6 +11,13 @@ const resolveFunctions = {
       return cocktail.findCocktail(id);
     },
   },
+  RootMutation: {
+    favoriteCocktail(_, { id }, ctx) {
+      const cocktail = new ctx.constructor.Cocktail();
+
+      return cocktail.favoriteCocktail(id);
+    },
+  },
 };
 
 module.exports = resolveFunctions;

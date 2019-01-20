@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 // const request = require('request-promise');
 
-const Cocktail = require('../graphql/model');
+const { Cocktail } = require('./models');
 
 const BACKUP_FILE = path.resolve(__dirname, './backup.json');
 

@@ -1,4 +1,4 @@
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer, AuthenticationError } = require('apollo-server');
 
 const { connectToDatabase } = require('./database/connect');
 
@@ -11,8 +11,17 @@ connectToDatabase();
 const server = new ApolloServer({
   typeDefs: Schema,
   resolvers: Resolvers,
-  context: {
-    constructor: Connectors,
+  context: ({ req }) => {
+    const deviceId = req.headers.device_id;
+
+    if (!deviceId) {
+      throw new AuthenticationError('You must provide the [device_id] header');
+    }
+
+    return {
+      constructor: Connectors,
+      deviceId,
+    };
   },
 });
 

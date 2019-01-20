@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 // const request = require('request-promise');
 
-const Cocktail = require('../graphql/model');
+const { Cocktail } = require('./models');
 
 const BACKUP_FILE = path.resolve(__dirname, './backup.json');
 
@@ -39,7 +39,6 @@ const seed = async () => {
       .map(drink => ({
         name: drink.strDrink ? drink.strDrink.trim() : '',
         imageURL: drink.strDrinkThumb,
-        likes: Math.floor(Math.random() * 100),
         glassType: drink.strGlass ? drink.strGlass.trim() : '',
         instructions: drink.strInstructions ? drink.strInstructions.trim() : '',
         ingredients: new Array(15)
@@ -64,7 +63,7 @@ const seed = async () => {
       cocktail.save();
     });
   } catch (err) {
-    console.log('Error while seeding database:', err);
+    console.error('Error while seeding database:', err);
   }
 };
 

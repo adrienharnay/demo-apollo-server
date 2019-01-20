@@ -26,13 +26,21 @@ const typeDefinitions = gql`
   """
   The list of all queries available.
   """
-  type RootQuery {
+  type Query {
     cocktails(ingredient: String): [Cocktail]!
     cocktail(id: ID!): Cocktail
   }
 
+  """
+  The list of all queries available.
+  """
+  type Mutation {
+    favoriteCocktail(id: ID!): Cocktail
+  }
+
   schema {
-    query: RootQuery
+    query: Query
+    mutation: Mutation
   }
 `;
 

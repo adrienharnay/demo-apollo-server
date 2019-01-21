@@ -23,8 +23,9 @@ class Cocktail {
             }
           : {}),
       };
+      const sort = { sort: { name: 1 } };
 
-      return await CocktailModel.find(where);
+      return await CocktailModel.find(where, null, sort);
     };
 
     this.getLikedCocktails = async ingredient => {
@@ -47,8 +48,9 @@ class Cocktail {
             }
           : {}),
       };
+      const sort = { sort: { name: 1 } };
 
-      return await CocktailModel.find(where);
+      return await CocktailModel.find(where, null, sort);
     };
 
     this.getBookmarkedCocktails = async ingredient => {
@@ -71,8 +73,9 @@ class Cocktail {
             }
           : {}),
       };
+      const sort = { sort: { name: 1 } };
 
-      return await CocktailModel.find(where);
+      return await CocktailModel.find(where, null, sort);
     };
 
     this.getCocktail = async id => {

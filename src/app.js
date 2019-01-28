@@ -16,6 +16,8 @@ const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
   context,
+  introspection: true,
+  playground: true,
 });
 
 const app = express();

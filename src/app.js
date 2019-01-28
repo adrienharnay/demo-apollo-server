@@ -1,4 +1,4 @@
-const { ApolloServer, AuthenticationError } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const { makeExecutableSchema } = require('graphql-tools');
 const { default: sofa, OpenAPI } = require('sofa-api');

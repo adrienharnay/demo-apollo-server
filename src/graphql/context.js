@@ -1,3 +1,5 @@
+const { ApolloServer, AuthenticationError } = require('apollo-server-express');
+
 const connectors = require('./connectors');
 
 const context = ({ req }) => {

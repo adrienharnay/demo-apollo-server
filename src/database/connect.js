@@ -38,4 +38,4 @@ const connectToDatabase = () => {
   }
 };
 
-module.exports = { connectToDatabase };
+module.exports = connectToDatabase;

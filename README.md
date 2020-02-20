@@ -26,6 +26,14 @@ open http://localhost:3000/graphql
 
 Connect to [this local URL](<http://localhost:3000/graphql?query=query%20%7B%0A%09cocktails%20%7B%0A%20%20%23%20cocktails(ingredient%3A%20%22Vodka%22)%20%7B%0A%20%20%20%20name%0A%20%20%20%20imageURL%0A%20%20%20%20likes%0A%20%20%20%20glassType%0A%20%20%20%20instructions%0A%20%20%20%20ingredients%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20quantity%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D>) for a pre-filled query.
 
+Note: You must identicate yourself with a device_id (passed via headers). E.g.
+
+```json
+{
+  "device_id": "Test"
+}
+```
+
 ### Running with local database
 
 You need to install `mongodb` on your machine first.
@@ -38,6 +46,14 @@ open http://localhost:3000/graphql
 ```
 
 Connect to [this local URL](<http://localhost:3000/graphql?query=query%20%7B%0A%09cocktails%20%7B%0A%20%20%23%20cocktails(ingredient%3A%20%22Vodka%22)%20%7B%0A%20%20%20%20name%0A%20%20%20%20imageURL%0A%20%20%20%20likes%0A%20%20%20%20glassType%0A%20%20%20%20instructions%0A%20%20%20%20ingredients%20%7B%0A%20%20%20%20%20%20name%0A%20%20%20%20%20%20quantity%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D>) for a pre-filled query.
+
+Note: You must identicate yourself with a device_id (passed via headers). E.g.
+
+```json
+{
+  "device_id": "Test"
+}
+```
 
 ## REST
 

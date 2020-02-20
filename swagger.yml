@@ -3,11 +3,197 @@ info:
     title: 'Cocktails API'
     version: 1.0.0
 paths:
-    /api/cocktails: {get: {operationId: cocktailsQuery, parameters: [{in: query, name: ingredient, required: false, schema: {type: string}}], requestBody: null, responses: {'200': {content: {application/json: {schema: {type: array, items: {$ref: '#/components/schemas/Cocktail'}}}}}}}}
-    /api/liked-cocktails: {get: {operationId: likedCocktailsQuery, parameters: [{in: query, name: ingredient, required: false, schema: {type: string}}], requestBody: null, responses: {'200': {content: {application/json: {schema: {type: array, items: {$ref: '#/components/schemas/Cocktail'}}}}}}}}
-    /api/bookmarked-cocktails: {get: {operationId: bookmarkedCocktailsQuery, parameters: [{in: query, name: ingredient, required: false, schema: {type: string}}], requestBody: null, responses: {'200': {content: {application/json: {schema: {type: array, items: {$ref: '#/components/schemas/Cocktail'}}}}}}}}
-    '/api/cocktail/{id}': {get: {operationId: cocktailQuery, parameters: [{in: path, name: id, required: true, schema: {$ref: '#/components/schemas/ID'}}], requestBody: null, responses: {'200': {content: {application/json: {schema: {$ref: '#/components/schemas/Cocktail'}}}}}}}
-    /api/toggle-like-cocktail: {post: {operationId: toggleLikeCocktailMutation, parameters: [], requestBody: {content: {application/json: {schema: {type: object, required: [id], properties: {id: {$ref: '#/components/schemas/ID'}}}}}}, responses: {'200': {content: {application/json: {schema: {$ref: '#/components/schemas/Cocktail'}}}}}}}
-    /api/toggle-bookmark-cocktail: {post: {operationId: toggleBookmarkCocktailMutation, parameters: [], requestBody: {content: {application/json: {schema: {type: object, required: [id], properties: {id: {$ref: '#/components/schemas/ID'}}}}}}, responses: {'200': {content: {application/json: {schema: {$ref: '#/components/schemas/Cocktail'}}}}}}}
+    /api/cocktails:
+        get:
+            operationId: cocktailsQuery
+            parameters:
+                -
+                    in: query
+                    name: ingredient
+                    required: false
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Cocktail'
+    /api/liked-cocktails:
+        get:
+            operationId: likedCocktailsQuery
+            parameters:
+                -
+                    in: query
+                    name: ingredient
+                    required: false
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Cocktail'
+    /api/bookmarked-cocktails:
+        get:
+            operationId: bookmarkedCocktailsQuery
+            parameters:
+                -
+                    in: query
+                    name: ingredient
+                    required: false
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Cocktail'
+    '/api/cocktail/{id}':
+        get:
+            operationId: cocktailQuery
+            parameters:
+                -
+                    in: path
+                    name: id
+                    required: true
+                    schema:
+                        type: string
+            responses:
+                '200':
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Cocktail'
+    /api/toggle-like-cocktail:
+        post:
+            operationId: toggleLikeCocktailMutation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                            required:
+                                - id
+            responses:
+                '200':
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Cocktail'
+    /api/toggle-bookmark-cocktail:
+        post:
+            operationId: toggleBookmarkCocktailMutation
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                id:
+                                    type: string
+                            required:
+                                - id
+            responses:
+                '200':
+                    description: ""
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Cocktail'
 components:
-    schemas: {Query: {type: object, required: [cocktails, likedCocktails, bookmarkedCocktails], properties: {cocktails: {type: array, items: {$ref: '#/components/schemas/Cocktail'}}, likedCocktails: {type: array, items: {$ref: '#/components/schemas/Cocktail'}}, bookmarkedCocktails: {type: array, items: {$ref: '#/components/schemas/Cocktail'}}, cocktail: {$ref: '#/components/schemas/Cocktail'}}}, Cocktail: {type: object, required: [id, name, imageURL, likes, glassType, instructions, ingredients, liked, bookmarked], properties: {id: {type: object}, name: {type: string}, imageURL: {type: string}, likes: {type: integer, format: int32}, glassType: {type: string}, instructions: {type: string}, ingredients: {type: array, items: {$ref: '#/components/schemas/Ingredient'}}, liked: {type: boolean}, bookmarked: {type: boolean}}}, Ingredient: {type: object, required: [id, name], properties: {id: {type: object}, name: {type: string}, quantity: {type: string}}}, Mutation: {type: object, required: [], properties: {toggleLikeCocktail: {$ref: '#/components/schemas/Cocktail'}, toggleBookmarkCocktail: {$ref: '#/components/schemas/Cocktail'}}}}
+    schemas:
+        Query:
+            type: object
+            required:
+                - cocktails
+                - likedCocktails
+                - bookmarkedCocktails
+            properties:
+                cocktails:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Cocktail'
+                likedCocktails:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Cocktail'
+                bookmarkedCocktails:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Cocktail'
+                cocktail:
+                    $ref: '#/components/schemas/Cocktail'
+            description: 'The list of all queries available.'
+        Cocktail:
+            type: object
+            required:
+                - id
+                - name
+                - imageURL
+                - likes
+                - glassType
+                - instructions
+                - ingredients
+                - liked
+                - bookmarked
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                imageURL:
+                    type: string
+                likes:
+                    type: integer
+                    format: int32
+                glassType:
+                    type: string
+                instructions:
+                    type: string
+                ingredients:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Ingredient'
+                liked:
+                    type: boolean
+                bookmarked:
+                    type: boolean
+            description: 'An alcoholic (or non-alcoholic) drink consisting of a spirit or spirits mixed with other ingredients, such as fruit juice or cream.'
+        Ingredient:
+            type: object
+            required:
+                - id
+                - name
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                quantity:
+                    type: string
+            description: 'Combined to other ingredients, the key element to a nice cocktail.'
+        Mutation:
+            type: object
+            properties:
+                toggleLikeCocktail:
+                    $ref: '#/components/schemas/Cocktail'
+                toggleBookmarkCocktail:
+                    $ref: '#/components/schemas/Cocktail'
+            description: 'The list of all queries available.'
